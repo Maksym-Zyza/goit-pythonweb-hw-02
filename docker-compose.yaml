@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14-alpine
+    container_name: fastapi_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 567234
+      POSTGRES_DB: hw02
+    ports:
+      - "5433:5432"
+    volumes:
+      - mydbdata:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  web:
+    build: .
+    container_name: fastapi_app
+    depends_on:
+      - db
+    environment:
+      DB_HOST: fastapi_postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: 567234
+      DB_NAME: hw02
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/main
+    command: ["python", "main.py"]
+    networks:
+      - backend
+
+volumes:
+  mydbdata:
+
+networks:
+  backend:
