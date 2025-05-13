@@ -5,7 +5,7 @@
 1. **Створення:**
 
    ```bash
-   python -m venv env
+   python3 -m venv env
    ```
 
 2. **Активація:**
@@ -41,7 +41,7 @@
 1. Запуск контейнера:
 
    ```bash
-   docker run -p 27017:27017 -d <name>
+   docker run -p <host_port>:<container_port> -d <name>
    ```
 
 2. Запуск зупиненого контейнера:
