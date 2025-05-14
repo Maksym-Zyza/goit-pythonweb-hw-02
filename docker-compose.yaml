@@ -6,9 +6,9 @@ services:
     container_name: fastapi_postgres
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 567234
-      POSTGRES_DB: hw02
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5433:5432"
     volumes:
@@ -24,9 +24,9 @@ services:
     environment:
       DB_HOST: fastapi_postgres
       DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASSWORD: 567234
-      DB_NAME: hw02
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
     ports:
       - "8000:8000"
     volumes:
